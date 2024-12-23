@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="sk-SK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACH YOUR FITNESS GOALS</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        h1, h2 {
+            color: red;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        h2 {
+            font-size: 15px;
+        }
+
+        #toggle-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        #toggle-button:hover {
+            background-color: #45a049;
+        }
+
+        #settings-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: red;
+        }
+
+        #settings-button:hover {
+            color: #4CAF50;
+        }
+
+        #settings-panel {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #settings-panel label {
+            color: red;
+        }
+
+        #music-toggle {
+            margin-top: 20px;
+        }
+
+        #music-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #music-button:hover {
+            background-color: #0b79d0;
+        }
+    </style>
+</head>
+<body>
+<hr>
+    <h1>Hey, if you want to build muscles, you are on the right place!</h1>
+<hr>
+    <h2>You can put this website into dark mode when you click the green button down. You can also start playing some good music in the settings! This is new so we are fixing all bugs.</h2>
+<br>
+<h2>Where do you want to go next? Choose which one you want to know!
+
+
+
+
+    <!-- Tlačidlo na prepínanie režimu -->
+    <button id="toggle-button">Switch to Dark Mode</button>
+
+    <!-- Tlačidlo nastavení (ikona ozubeného kolieska) -->
+    <button id="settings-button">&#9881;</button>
+
+    <!-- Panel nastavení -->
+    <div id="settings-panel">
+        <label for="music-toggle">Music:</label>
+        <input type="checkbox" id="music-toggle" checked>
+        <label for="music-toggle">Start/Turn off Music</label>
+    </div>
+
+    <!-- Hudobný súbor -->
+    <audio id="music" loop>
+        <source src="drunk-on-funk-273910.mp3" type="audio/mp3">
+        Váš prehliadač nepodporuje audio element.
+    </audio>
+
+    <script>
+        // Po načítaní DOM
+        document.addEventListener('DOMContentLoaded', function () {
+            // Získanie tlačidiel a elementov
+            const toggleButton = document.getElementById("toggle-button");
+            const body = document.body;
+            const settingsButton = document.getElementById("settings-button");
+            const settingsPanel = document.getElementById("settings-panel");
+            const musicToggle = document.getElementById("music-toggle");
+            const music = document.getElementById("music");
+
+            // Prepínanie tmavého/svetlého režimu
+            toggleButton.addEventListener("click", () => {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    toggleButton.textContent = "Switch to Light Mode";
+                } else {
+                    toggleButton.textContent = "Switch to Dark Mode";
+                }
+            });
+
+            // Otvorenie/zatvorenie panela nastavení
+            settingsButton.addEventListener("click", () => {
+                settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
+            });
+
+            // Prepínanie hudby pomocou zaškrtávacieho políčka
+            musicToggle.addEventListener("change", () => {
+                if (musicToggle.checked) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
+            });
+
+            // Prehrávanie/pauza hudby pomocou tlačidla
+            const musicButton = document.getElementById("music-button");
+            musicButton.addEventListener("click", () => {
+                if (music.paused) {
+                    music.play();
+                    musicButton.textContent = "Pause Music";
+                } else {
+                    music.pause();
+                    musicButton.textContent = "Play Music";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
